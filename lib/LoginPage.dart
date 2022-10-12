@@ -12,7 +12,8 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPage extends State<SignInPage> {
   late TextEditingController _controller;
-  String _userName = '';
+  String _email = '';
+  String _password = '';
 
   @override
   void initState() {
@@ -26,56 +27,73 @@ class _SignInPage extends State<SignInPage> {
     super.dispose();
   }
 
+  // Initially password is obscure
+  bool _obscureText = true;
+
+  // Toggles the password show status
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Enter User Name'),
-        ),
-
-        body: Container(
-            padding: EdgeInsets.all(25),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                Text(widget.userName),
+      appBar: AppBar(
+        title: const Text('Login'),
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(25),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(widget.userName),
             TextField(
+              decoration: const InputDecoration(
+                labelText: 'email',
+                icon: Padding(
+                    padding: EdgeInsets.only(top: 15.0),
+                    child: Icon(Icons.email)),
+              ),
               controller: _controller,
               onChanged: (String value) {
-                _userName = value;
-              },
-              onSubmitted: (String value) async {
-                await showDialog<void>(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text('Thanks!'),
-                      content: Text(
-                          'You typed "$value", which has (${_userName}) length ${value
-                              .characters.length}.'),
-                      actions: <Widget>[
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text('OK'),
-                        ),
-                      ],
-                    );
-                  },
-                );
+                _email = value;
               },
             ),
+            TextFormField(
+              decoration: const InputDecoration(
+                  labelText: 'Password',
+                  icon: Padding(
+                    padding: EdgeInsets.only(top: 15.0),
+                    child: Icon(Icons.lock),
+                  )),
+              onChanged: (String value) {
+                _password = value;
+              },
+              obscureText: _obscureText,
+            ),
+            FloatingActionButton(
+                onPressed: _toggle,
+                child: Icon(
+                    _obscureText ? Icons.visibility_off : Icons.visibility)),
             ElevatedButton(
-                onPressed: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MyHomePage(userName: _userName)
-                ),
-            )},
-            child: Text('Submit'))],
-    ),
-    ),
+                onPressed: () => _password != ''
+                    ? {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomePage(email: _email)),
+                        )
+                      }
+                    : null,
+                child: const Text('Submit'),
+                style: TextButton.styleFrom(
+                    backgroundColor:
+                        _password != '' ? Colors.deepPurple : Colors.deepPurple))
+          ],
+        ),
+      ),
     );
   }
 }
