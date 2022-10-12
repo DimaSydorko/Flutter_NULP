@@ -3,7 +3,7 @@ class Subject {
   String type = ''; //Lecture | Practice | Lab
   String teacher = '';
   String room = '';
-  int start = 1;
+  String start = '';
   bool isAllGroup = true;
   bool isOnePerTwoWeeks = false;
 

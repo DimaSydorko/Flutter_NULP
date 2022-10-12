@@ -14,27 +14,27 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List _days = [
     Day('Monday', [
-      Subject(
-          'Flutter dev', 'Lecture', 'Boris Johnson ', 'V, 505', true, true, 2),
-      Subject(
-          'C++ dev', 'Practice', 'Boris Johnson ', 'V, 505', false, true, 3)
+      Subject('Flutter dev', 'Lecture', 'Boris Johnson ', 'V, 505', true, true,
+          '8:30'),
+      Subject('C++ dev', 'Practice', 'Boris Johnson ', 'V, 505', false, true,
+          '10:20')
     ]),
     Day('Tuesday', [
       Subject(
-          'AI dev', 'Lecture', 'Boris Johnson ', 'V, 505', true, true, 2),
-      Subject(
-          'Python dev', 'Practice', 'Boris Johnson ', 'V, 505', false, true, 3)
+          'AI dev', 'Lecture', 'Boris Johnson ', 'V, 505', true, true, '10:20'),
+      Subject('Python dev', 'Practice', 'Boris Johnson ', 'V, 505', false, true,
+          '12:10')
     ]),
     Day('Wednesday', [
       Subject(
-          'JAVA', 'Lecture', 'Boris Johnson ', 'V, 505', true, true, 1),
-      Subject(
-          'React Native', 'Practice', 'Boris Johnson ', 'V, 505', true, false, 3)
+          'JAVA', 'Lecture', 'Boris Johnson ', 'V, 505', true, true, '10:20'),
+      Subject('React Native', 'Practice', 'Boris Johnson ', 'V, 505', true,
+          false, '12:10')
     ]),
     Day('Thursday', []),
     Day('Friday', [
       Subject(
-          'React', 'Practice', 'Boris Johnson ', 'V, 505', false, true, 1)
+          'React', 'Practice', 'Boris Johnson ', 'V, 505', false, true, '10:20')
     ])
   ];
 
